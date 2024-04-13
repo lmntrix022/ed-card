@@ -99,7 +99,7 @@ export default function PageLinksForm({page,user}) {
                       className="hidden"/>
                     <label htmlFor={'icon'+l.key} className="border mt-2 p-2 flex items-center gap-1 text-gray-600 cursor-pointer mb-2 justify-center">
                       <FontAwesomeIcon icon={faCloudArrowUp} />
-                      <span>Changer d'icône</span>
+                      <span>Changer d&#39;icône</span>
                     </label>
                     <button
                       onClick={() => removeLink(l.key)}

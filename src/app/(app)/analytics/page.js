@@ -83,7 +83,7 @@ export default async function AnalyticsPage() {
                       .length
                   }
                 </div>
-                <div className="text-gray-400 text-xs uppercase font-bold">Aujourd'hui</div>
+                <div className="text-gray-400 text-xs uppercase font-bold">Aujourd&#39;hui</div>
               </div>
             </div>
             <div className="text-center">

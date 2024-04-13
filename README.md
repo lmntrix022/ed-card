@@ -1,1 +1,1 @@
-eqcard# eqcard
+eqcard

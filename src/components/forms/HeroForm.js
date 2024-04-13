@@ -45,7 +45,7 @@ export default function HeroForm({user}) {
       <button
         type="submit"
         className="bg-blue-500 text-white py-4 px-6 whitespace-nowrap">
-          S'inscrire gratuitement
+          S&#39;inscrire gratuitement
       </button>
     </form>
   );
