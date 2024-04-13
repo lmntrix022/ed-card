@@ -35,7 +35,7 @@ export default function HeroForm({user}) {
       onSubmit={handleSubmit}
       className="inline-flex items-center shadow-lg bg-white shadow-gray-500/20">
           <span className="bg-white py-4 pl-4">
-            linklist.to/
+            eqcard.to/
           </span>
       <input
         type="text"
@@ -45,7 +45,7 @@ export default function HeroForm({user}) {
       <button
         type="submit"
         className="bg-blue-500 text-white py-4 px-6 whitespace-nowrap">
-        Join for Free
+          S'inscrire gratuitement
       </button>
     </form>
   );

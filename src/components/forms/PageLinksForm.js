@@ -59,13 +59,13 @@ export default function PageLinksForm({page,user}) {
   return (
     <SectionBox>
       <form action={save}>
-        <h2 className="text-2xl font-bold mb-4">Links</h2>
+        <h2 className="text-2xl font-bold mb-4">Liens</h2>
         <button
           onClick={addNewLink}
           type="button"
           className="text-blue-500 text-lg flex gap-2 items-center cursor-pointer">
           <FontAwesomeIcon className="bg-blue-500 text-white p-1 rounded-full aspect-square" icon={faPlus} />
-          <span>Add new</span>
+          <span>Ajouter</span>
         </button>
         <div className="">
           <ReactSortable
@@ -99,27 +99,27 @@ export default function PageLinksForm({page,user}) {
                       className="hidden"/>
                     <label htmlFor={'icon'+l.key} className="border mt-2 p-2 flex items-center gap-1 text-gray-600 cursor-pointer mb-2 justify-center">
                       <FontAwesomeIcon icon={faCloudArrowUp} />
-                      <span>Change icon</span>
+                      <span>Changer d'icône</span>
                     </label>
                     <button
                       onClick={() => removeLink(l.key)}
                       type="button" className="w-full bg-gray-300 py-2 px-3 mb-2 h-full flex gap-2 items-center justify-center">
                       <FontAwesomeIcon icon={faTrash} />
-                      <span>Remove this link</span>
+                      <span>Supprimer ce lien</span>
                     </button>
                   </div>
                 </div>
                 <div className="grow">
-                  <label className="input-label">Title:</label>
+                  <label className="input-label">Titre:</label>
                   <input
                     value={l.title}
                     onChange={ev => handleLinkChange(l.key, 'title', ev)}
-                    type="text" placeholder="title"/>
-                  <label className="input-label">Subtitle:</label>
+                    type="text" placeholder="Titre"/>
+                  <label className="input-label">Sous-titre:</label>
                   <input
                     value={l.subtitle}
                     onChange={ev => handleLinkChange(l.key, 'subtitle', ev)}
-                    type="text" placeholder="subtitle (optional)"/>
+                    type="text" placeholder="Sous-titre (optionnel)"/>
                   <label className="input-label">URL:</label>
                   <input
                     value={l.url}
@@ -133,7 +133,7 @@ export default function PageLinksForm({page,user}) {
         <div className="border-t pt-4 mt-4">
           <SubmitButton className="max-w-xs mx-auto">
             <FontAwesomeIcon icon={faSave} />
-            <span>Save</span>
+            <span>Enregistrer</span>
           </SubmitButton>
         </div>
       </form>

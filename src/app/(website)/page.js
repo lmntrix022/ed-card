@@ -9,10 +9,10 @@ export default async function Home() {
       <section className="pt-32">
         <div className="max-w-md mb-8">
           <h1 className="text-6xl font-bold">
-            Your one link<br />for everything
+            Créez des connexions<br />authentiques.
           </h1>
           <h2 className="text-gray-500 text-xl mt-6">
-            Share your links, social profiles, contact info and more on one page
+            Révolutionnez votre manière de réseauter avec des cartes de visite digitales personnalisées et impactantes.
           </h2>
         </div>
         <HeroForm user={session?.user} />

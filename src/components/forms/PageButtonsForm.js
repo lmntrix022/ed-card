@@ -36,9 +36,11 @@ function upperFirst(str) {
 
 export default function PageButtonsForm({user,page}) {
 
-  const pageSavedButtonsKeys = Object.keys(page.buttons);
-  const pageSavedButtonsInfo = pageSavedButtonsKeys
-    .map(k => allButtons.find(b => b.key === k));
+  const pageSavedButtonsInfo = page && page.buttons
+  ? Object.keys(page.buttons).map(k => allButtons.find(b => b.key === k))
+  : [];
+
+
   const [activeButtons, setActiveButtons] = useState(pageSavedButtonsInfo);
 
   function addButtonToProfile(button) {
@@ -64,7 +66,7 @@ export default function PageButtonsForm({user,page}) {
   return (
     <SectionBox>
       <form action={saveButtons}>
-        <h2 className="text-2xl font-bold mb-4">Buttons</h2>
+        <h2 className="text-2xl font-bold mb-4">Boutons</h2>
         <ReactSortable
           handle=".handle"
           list={activeButtons}
@@ -82,7 +84,7 @@ export default function PageButtonsForm({user,page}) {
                 <input
                   placeholder={b.placeholder}
                   name={b.key}
-                  defaultValue={page.buttons[b.key]}
+                  defaultValue={page?.buttons?.[b.key]}
                   type="text" style={{marginBottom:'0'}} />
                 <button
                   onClick={() => removeButton(b)}
@@ -112,7 +114,7 @@ export default function PageButtonsForm({user,page}) {
         <div className="max-w-xs mx-auto mt-8">
           <SubmitButton>
             <FontAwesomeIcon icon={faSave} />
-            <span>Save</span>
+            <span>Enregistrer</span>
           </SubmitButton>
         </div>
       </form>

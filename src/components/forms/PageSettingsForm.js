@@ -106,14 +106,14 @@ export default function PageSettingsForm({page,user}) {
             </div>
           </div>
           <div className="p-0">
-            <label className="input-label" htmlFor="nameIn">Display name</label>
+            <label className="input-label" htmlFor="nameIn">NOM</label>
             <input
               type="text"
               id="nameIn"
               name="displayName"
               defaultValue={page.displayName}
               placeholder="John Doe"/>
-            <label className="input-label" htmlFor="locationIn">Location</label>
+            <label className="input-label" htmlFor="locationIn">Localisation</label>
             <input
               type="text"
               id="locationIn"
@@ -129,7 +129,7 @@ export default function PageSettingsForm({page,user}) {
             <div className="max-w-[200px] mx-auto">
               <SubmitButton>
                 <FontAwesomeIcon icon={faSave} />
-                <span>Save</span>
+                <span>Enregistrer</span>
               </SubmitButton>
             </div>
           </div>

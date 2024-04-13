@@ -15,7 +15,7 @@ export default function LogoutButton({
       {iconLeft && (
         <FontAwesomeIcon icon={faRightFromBracket} className={iconClasses} />
       )}
-      <span>Logout</span>
+      <span>Déconnecter</span>
       {!iconLeft && (
         <FontAwesomeIcon icon={faRightFromBracket} className={iconClasses} />
       )}
