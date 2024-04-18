@@ -5,10 +5,10 @@ export default function LoginPage() {
     <div>
       <div className="p-4 max-w-xs mx-auto">
         <h1 className="text-4xl font-bold text-center mb-2">
-          S'inscrire
+          S&#39;inscrire
         </h1>
         <p className="text-center mb-6 text-gray-500">
-          Connectez-vous à votre compte en utilisant l'une des méthodes suivantes
+          Connectez-vous à votre compte en utilisant l&#39;une des méthodes suivantes
         </p>
         <LoginWithGoogle />
       </div>
