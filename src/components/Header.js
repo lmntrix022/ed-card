@@ -15,11 +15,7 @@ export default async function Header() {
             <Image src="/eq-card.png" alt="Eqcard" width={50} height={50} />
             <span className="font-bold">Eqcard</span>
           </Link>
-          <nav className="flex items-center gap-4 text-slate-500 text-sm">
-            <Link href={'/about'}>A propos</Link>
-            <Link href={'/pricing'}>Prix</Link>
-            <Link href={'/contact'}>Contact</Link>
-          </nav>
+
         </div>
         <nav className="flex items-center gap-4 text-sm text-slate-500">
           {!!session && (
