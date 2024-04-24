@@ -1,7 +1,7 @@
 import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 import AppSidebar from "@/components/layout/AppSidebar";
 import {Page} from "@/models/Page";
-import {faBars, faLink} from "@fortawesome/free-solid-svg-icons";
+import {faBars} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import mongoose from "mongoose";
 import {getServerSession} from "next-auth";

@@ -7,9 +7,8 @@ import { ReactSortable } from "react-sortablejs";
 import {
   faDiscord,
   faFacebook,
-  faGithub, faInstagram, faInstagramSquare, faTelegram,
+  faGithub, faInstagram, faTelegram, faLinkedin,
   faTiktok,
-  faWhatsapp,
   faYoutube
 } from "@fortawesome/free-brands-svg-icons";
 import {faEnvelope, faGripLines, faMobile, faPlus, faSave, faTrash} from "@fortawesome/free-solid-svg-icons";
@@ -25,9 +24,9 @@ export const allButtons = [
   {key: 'discord', 'label': 'discord', icon: faDiscord},
   {key: 'tiktok', 'label': 'tiktok', icon: faTiktok},
   {key: 'youtube', 'label': 'youtube', icon: faYoutube},
-  {key: 'whatsapp', 'label': 'whatsapp', icon: faWhatsapp},
   {key: 'github', 'label': 'github', icon: faGithub},
   {key: 'telegram', 'label': 'telegram', icon: faTelegram},
+  {key: 'linkedin', 'label': 'linkedin', icon: faLinkedin, placeholder: 'https://linkedin.com/in/...'},
 ];
 
 function upperFirst(str) {

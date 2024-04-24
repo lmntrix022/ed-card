@@ -5,12 +5,12 @@ import {
   faDiscord,
   faFacebook,
   faGithub,
-  faInstagram, faTelegram,
+  faInstagram, faTelegram, faLinkedin,
   faTiktok,
   faWhatsapp,
   faYoutube
 } from "@fortawesome/free-brands-svg-icons";
-import {faEnvelope, faLink, faLocationDot, faMobile, faPhone} from "@fortawesome/free-solid-svg-icons";
+import {faEnvelope, faLink, faLocationDot, faPhone} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import mongoose from "mongoose";
 import {btoa} from "next/dist/compiled/@edge-runtime/primitives";
@@ -28,6 +28,7 @@ export const buttonsIcons = {
   whatsapp: faWhatsapp,
   github: faGithub,
   telegram: faTelegram,
+  linkedin: faLinkedin,
 };
 
 function buttonLink(key, value) {
