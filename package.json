@@ -33,6 +33,7 @@
     "sortablejs": "^1.15.0",
     "uniqid": "^5.4.0",
     "uploadthing": "^6.9.0",
+    "vcards-js": "^2.10.0",
     "vcf": "^2.1.2"
   },
   "devDependencies": {

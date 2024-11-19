@@ -86,6 +86,7 @@ export default function PageSettingsForm({page,user}) {
                 </div>
               )}
             </div>
+            
           </div>
           <div className="flex justify-center -mb-12">
             <div className="relative -top-8 w-[128px] h-[128px]">
@@ -106,6 +107,16 @@ export default function PageSettingsForm({page,user}) {
             </div>
           </div>
           <div className="p-0">
+              <div className="bg-gray-200 shadow text-gray-700 p-2 mt-8">
+                <div className="flex gap-2 justify-center">
+                  <span>Arriere plan:</span>
+                  <input
+                    type="color"
+                    name="bgColor"
+                    onChange={ev => setBgColor(ev.target.value)}
+                    defaultValue={page.bgColor} />
+                </div>
+              </div>
             <label className="input-label" htmlFor="nameIn">NOM</label>
             <input
               type="text"
