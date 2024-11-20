@@ -85,13 +85,14 @@ export default async function UserPage({ params }) {
     <div className="min-h-screen flex flex-col items-center" style={{ backgroundColor: page.bgColor }}>
       {/* Bannière */}
       <div
-        className="h-36 w-full bg-cover bg-center rounded-lg"
+        className="h-80 w-full bg-cover bg-center shadow-md rounded-b-[38%]"
         style={
           page.bgType === "color"
             ? { backgroundColor: page.bgColor }
             : { backgroundImage: `url(${page.bgImage})` }
-        }
+  }
       ></div>
+
 
       {/* Avatar */}
       <div className="relative -top-20 w-36 h-36 rounded-full shadow-lg overflow-hidden border-4 border-white ">
@@ -131,7 +132,7 @@ export default async function UserPage({ params }) {
       <div className="mt-6">
         <Link
           href={`/api/vcard?${vcardParams.toString()}`}
-          className="px-6 py-3 rounded-full bg-blue-950 text-white shadow-lg hover:bg-blue-700 transition"
+          className="px-6 py-3 rounded-full bg-blue-950 text-white shadow-lg hover:bg-[#fff] hover:text-blue-950 transition"
         >
           Sauvegarder contact
         </Link>
@@ -146,7 +147,7 @@ export default async function UserPage({ params }) {
             target="_blank"
             className="flex items-center gap-4 text-black p-4 rounded-lg shadow-lg hover:bg-blue-950 hover:text-white transition"
           >
-            <div className="w-12 h-12 bg-blue-700/60 flex items-center justify-center rounded-full">
+            <div className="w-12 h-12 bg-white flex items-center justify-center rounded-full">
               {link.icon ? (
                 <Image
                   src={link.icon}
