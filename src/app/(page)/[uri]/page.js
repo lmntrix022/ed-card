@@ -17,6 +17,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import mongoose from "mongoose";
 import Image from "next/image";
 import Link from "next/link";
+import Footer from "@/components/Footer";
 
 export const buttonsIcons = {
   email: faEnvelope,
@@ -31,6 +32,7 @@ export const buttonsIcons = {
   telegram: faTelegram,
   linkedin: faLinkedin,
 };
+
 
 function buttonLink(key, value) {
   if (key === "mobile") {
@@ -166,7 +168,11 @@ export default async function UserPage({ params }) {
             </div>
           </Link>
         ))}
+
+        
       </div>
+      <Footer />
     </div>
+    
   );
 }
