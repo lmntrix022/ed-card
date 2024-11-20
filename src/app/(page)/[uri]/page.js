@@ -94,7 +94,7 @@ export default async function UserPage({ params }) {
       ></div>
 
       {/* Avatar */}
-      <div className="relative -top-16 w-36 h-36 rounded-full shadow-lg overflow-hidden border-4 border-white">
+      <div className="relative -top-16 w-36 h-36 rounded-full shadow-lg overflow-hidden border-4 border-white ">
         <Image
           className="object-cover w-full h-full"
           src={user.image}
@@ -145,7 +145,7 @@ export default async function UserPage({ params }) {
             key={link.url}
             href={link.url}
             target="_blank"
-            className="flex items-center gap-4 bg-gray-800/40 text-white p-4 rounded-lg shadow-lg hover:bg-gary-700/60 transition"
+            className="flex items-center gap-4 text-white p-4 rounded-lg shadow-lg shadow-neumorphism hover:shadow-neumorphism-hover active:shadow-neumorphism-active transition"
           >
             <div className="w-12 h-12 bg-blue-700/60 flex items-center justify-center rounded-full">
               {link.icon ? (
