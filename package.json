@@ -19,6 +19,8 @@
     "@uploadthing/react": "^6.4.4",
     "clone-deep": "^4.0.1",
     "date-fns": "^2.30.0",
+    "framer-motion": "^11.11.17",
+    "gsap": "^3.12.5",
     "mongodb": "^6.2.0",
     "mongoose": "^8.0.1",
     "next": "14.0.2",
