@@ -1,5 +1,3 @@
-// src/app/api/vcard/route.js
-
 export async function GET(req) {
   try {
     // Récupérer les paramètres de la requête GET
@@ -8,17 +6,35 @@ export async function GET(req) {
     const email = searchParams.get('email');
     const phone = searchParams.get('phone');
     const address = searchParams.get('address');
-    
-    // Récupérer les paramètres multiples
-    const websites = searchParams.getAll('website');  // Récupère tous les sites web
-    const facebook = searchParams.getAll('facebook');  // Récupère tous les profils Facebook
-    const twitter = searchParams.getAll('twitter');  // Récupère tous les profils Twitter
-    const linkedin = searchParams.getAll('linkedin');  // Récupère tous les profils LinkedIn
-    const instagram = searchParams.getAll('instagram');  // Récupère tous les profils Instagram
+    const photoUrl = searchParams.get('photo'); // Nouvelle clé pour la photo
 
-    // Vérification si displayName et email sont présents
+    // Récupérer les paramètres multiples
+    const websites = searchParams.getAll('website');
+    const facebook = searchParams.getAll('facebook');
+    const twitter = searchParams.getAll('twitter');
+    const linkedin = searchParams.getAll('linkedin');
+    const instagram = searchParams.getAll('instagram');
+
+    // Vérification des champs obligatoires
     if (!displayName || !email) {
       return new Response('displayName and email are required', { status: 400 });
+    }
+
+    // Télécharger et encoder la photo en base64
+    let photoData = '';
+    if (photoUrl) {
+      try {
+        const response = await fetch(photoUrl);
+        if (!response.ok) {
+          throw new Error(`Failed to fetch photo: ${response.statusText}`);
+        }
+        const buffer = await response.arrayBuffer();
+        const base64 = Buffer.from(buffer).toString('base64');
+        const mimeType = response.headers.get('content-type');
+        photoData = `PHOTO;ENCODING=b;TYPE=${mimeType}:${base64}\n`;
+      } catch (err) {
+        console.error('Error fetching photo:', err);
+      }
     }
 
     // Création de la vCard avec les informations reçues
@@ -26,29 +42,18 @@ export async function GET(req) {
 BEGIN:VCARD
 VERSION:3.0
 FN:${displayName}
-EMAIL:${email || 'Not provided'}
+EMAIL:${email}
+${photoData}
 `;
 
-    // Ajouter le téléphone si disponible
-    if (phone) {
-      vCardData += `TEL:${phone}\n`;
-    } else {
-      vCardData += `TEL:Not provided\n`; // Si le téléphone n'est pas fourni, ajouter "Not provided"
-    }
+    // Ajouter les autres champs si disponibles
+    vCardData += `TEL:${phone || 'Not provided'}\n`;
+    vCardData += `ADR:${address || 'Not provided'}\n`;
 
-    // Ajouter l'adresse si disponible
-    if (address) {
-      vCardData += `ADR:${address}\n`;
-    } else {
-      vCardData += `ADR:Not provided\n`; // Si l'adresse n'est pas fournie, ajouter "Not provided"
-    }
-
-    // Ajouter les informations du site web (si plusieurs, les ajouter toutes)
+    // Ajouter les informations multiples (websites, réseaux sociaux)
     websites.forEach((website) => {
       vCardData += `URL:${website}\n`;
     });
-
-    // Ajouter les liens vers les réseaux sociaux (si plusieurs, les ajouter toutes)
     facebook.forEach((fb) => {
       vCardData += `X-SOCIALPROFILE;type=facebook:${fb}\n`;
     });
@@ -65,7 +70,7 @@ EMAIL:${email || 'Not provided'}
     // Clôturer la vCard
     vCardData += `END:VCARD`;
 
-    // Créer une réponse avec les en-têtes appropriés pour le téléchargement du fichier vCard
+    // Retourner la réponse avec les en-têtes appropriés
     return new Response(vCardData, {
       status: 200,
       headers: {
@@ -74,7 +79,7 @@ EMAIL:${email || 'Not provided'}
       },
     });
   } catch (error) {
-    console.error('Error generating vCard:', error);  // Log de l'erreur
+    console.error('Error generating vCard:', error); // Log de l'erreur
     return new Response(`Internal Server Error: ${error.message}`, { status: 500 });
   }
 }

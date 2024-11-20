@@ -45,8 +45,6 @@ function buttonLink(key, value) {
 export default async function UserPage({ params }) {
   const uri = params.uri;
 
-  
-
   // Connecter à la base de données
   await mongoose.connect(process.env.MONGO_URI);
 
@@ -56,6 +54,32 @@ export default async function UserPage({ params }) {
 
   // Enregistrer l'événement de vue
   await Event.create({ uri: uri, page: uri, type: "view" });
+
+  // Préparer les paramètres pour l'API vCard
+  const vcardParams = new URLSearchParams({
+    displayName: page.displayName,
+    email: page.buttons.email || "",
+    phone: page.buttons.mobile || "",
+    address: page.location || "",
+    photo: user.image, // Ajouter la photo de profil
+  });
+
+  // Ajouter les liens et les réseaux sociaux (s'ils existent)
+  if (page.links) {
+    page.links.forEach((link) => vcardParams.append("website", link.url));
+  }
+  if (page.buttons.instagram) {
+    vcardParams.append("instagram", page.buttons.instagram);
+  }
+  if (page.buttons.facebook) {
+    vcardParams.append("facebook", page.buttons.facebook);
+  }
+  if (page.buttons.linkedin) {
+    vcardParams.append("linkedin", page.buttons.linkedin);
+  }
+  if (page.buttons.twitter) {
+    vcardParams.append("twitter", page.buttons.twitter);
+  }
 
   return (
     <div className="text-white min-h-screen" style={{ backgroundColor: page.bgColor }}>
@@ -97,12 +121,11 @@ export default async function UserPage({ params }) {
       </div>
       <div className="flex justify-center my-4">
         <Link
-          href={`/api/vcard?displayName=${encodeURIComponent(page.displayName)}&email=${encodeURIComponent(page.buttons.email || "")}&mobile=${encodeURIComponent(page.buttons.mobile || "")}&location=${encodeURIComponent(page.location || "")}&links=${encodeURIComponent(JSON.stringify(page.links || []))}`}
+          href={`/api/vcard?${vcardParams.toString()}`}
           className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
         >
           Télécharger Contact (vCard)
         </Link>
-
       </div>
 
       <div className="max-w-2xl mx-auto grid md:grid-cols-2 gap-6 p-4 px-8">

@@ -23,6 +23,7 @@
     "mongoose": "^8.0.1",
     "next": "14.0.2",
     "next-auth": "^4.20.1",
+    "node-fetch": "^3.3.2",
     "object-copy": "^1.0.0",
     "plain-object-clone": "^2.0.0",
     "react": "^18",
