@@ -37,3 +37,25 @@ input#navCb:checked ~ aside{
 input#navCb:checked ~ .backdrop{
     display: block;
 }
+
+/* Ombre externe douce pour l'effet neumorphism sur bouton transparent */
+.shadow-neumorphism {
+    background-color: transparent; /* Fond transparent */
+    color: #c1c0e1; /* Couleur du texte verte */
+    border: 2px solid #c1c0e1; /* Bordure verte subtile */
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1), -4px -4px 8px rgba(255, 255, 255, 0.5);
+  }
+  
+  /* Ombre externe douce au survol */
+  .shadow-neumorphism-hover {
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15), -2px -2px 6px rgba(255, 255, 255, 0.6);
+    border-color: #9e9dc9; /* Légère intensification du contour au survol */
+  }
+  
+  /* Ombre interne lors du clic */
+  .shadow-neumorphism-active {
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2), inset -1px -1px 3px rgba(255, 255, 255, 0.5);
+    border-color: #9e9dc9; /* Ombre plus marquée au clic */
+  }
+  
+  

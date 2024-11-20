@@ -10,7 +10,7 @@ import {
   faLinkedin,
   faTiktok,
   faWhatsapp,
-  faYoutube
+  faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope, faLink, faLocationDot, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -82,84 +82,92 @@ export default async function UserPage({ params }) {
   }
 
   return (
-    <div className="text-white min-h-screen" style={{ backgroundColor: page.bgColor }}>
+    <div className="min-h-screen flex flex-col items-center" style={{ backgroundColor: page.bgColor }}>
+      {/* Bannière */}
       <div
-        className="h-36 bg-gray-400 bg-cover bg-center"
+        className="h-36 w-full bg-cover bg-center"
         style={
           page.bgType === "color"
             ? { backgroundColor: page.bgColor }
             : { backgroundImage: `url(${page.bgImage})` }
         }
       ></div>
-      <div className="aspect-square w-36 h-36 mx-auto relative -top-16 -mb-12">
+
+      {/* Avatar */}
+      <div className="relative -top-16 w-36 h-36 rounded-full shadow-lg overflow-hidden border-4 border-white">
         <Image
-          className="rounded-full w-full h-full object-cover"
+          className="object-cover w-full h-full"
           src={user.image}
           alt="avatar"
           width={256}
           height={256}
         />
       </div>
-      <h2 className="text-2xl text-center mb-1">{page.displayName}</h2>
-      <h3 className="text-md flex gap-2 justify-center items-center text-white/70">
-        <FontAwesomeIcon className="h-4" icon={faLocationDot} />
+
+      {/* Nom et localisation */}
+      <h2 className="text-3xl font-semibold text-white px-4 mb-4">{page.displayName}</h2>
+      <h3 className="text-lg text-white/70 flex items-center gap-2">
+        <FontAwesomeIcon icon={faLocationDot} className="h-5" />
         <span>{page.location}</span>
       </h3>
-      <div className="max-w-xs mx-auto text-center my-2">
-        <p>{page.bio}</p>
-      </div>
-      <div className="flex gap-2 justify-center mt-4 pb-4">
+
+      {/* Biographie */}
+      <p className="text-center text-white/80 max-w-lg mt-4 px-4 text-justify">{page.bio}</p>
+
+      {/* Boutons */}
+      <div className="flex gap-4 justify-center mt-6 pb-4 flex-wrap ">
         {Object.keys(page.buttons).map((buttonKey) => (
           <Link
             key={buttonKey}
             href={buttonLink(buttonKey, page.buttons[buttonKey])}
-            className="rounded-full bg-white text-blue-950 p-2 flex items-center justify-center"
+            className="rounded-full bg-white text-blue-950 p-3 flex items-center justify-center shadow-md shadow-neumorphism hover:shadow-neumorphism-hover active:shadow-neumorphism-active transition"
           >
-            <FontAwesomeIcon className="w-5 h-5" icon={buttonsIcons[buttonKey]} />
+            <FontAwesomeIcon className="w-6 h-6" icon={buttonsIcons[buttonKey]} />
           </Link>
         ))}
       </div>
-      <div className="flex justify-center my-4">
+
+      {/* Télécharger Contact */}
+      <div className="mt-6">
         <Link
           href={`/api/vcard?${vcardParams.toString()}`}
-          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+          className="px-6 py-3 rounded-full shadow-neumorphism hover:shadow-neumorphism-hover active:shadow-neumorphism-active transition"
         >
-          Télécharger Contact (vCard)
+          Sauvegarder contact
         </Link>
       </div>
 
-      <div className="max-w-2xl mx-auto grid md:grid-cols-2 gap-6 p-4 px-8">
+
+      {/* Liens */}
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6 p-6 w-full max-w-4xl">
         {page.links.map((link) => (
           <Link
             key={link.url}
-            target="_blank"
-            className="bg-indigo-800 p-2 block flex"
             href={link.url}
+            target="_blank"
+            className="flex items-center gap-4 bg-gray-800/40 text-white p-4 rounded-lg shadow-lg hover:bg-gary-700/60 transition"
           >
-            <div className="relative -left-4 overflow-hidden w-16">
-              <div className="w-16 h-16 bg-blue-700 aspect-square relative flex items-center justify-center">
-                {link.icon ? (
-                  <Image
-                    className="w-full h-full object-cover"
-                    src={link.icon}
-                    alt="icon"
-                    width={64}
-                    height={64}
-                  />
-                ) : (
-                  <FontAwesomeIcon icon={faLink} className="w-8 h-8" />
-                )}
-              </div>
+            <div className="w-12 h-12 bg-blue-700/60 flex items-center justify-center rounded-full">
+              {link.icon ? (
+                <Image
+                  src={link.icon}
+                  alt="icon"
+                  className="object-cover w-full h-full rounded-full shadow-md"
+                  width={48}
+                  height={48}
+                />
+              ) : (
+                <FontAwesomeIcon icon={faLink} className="w-6 h-6 text-white" />
+              )}
             </div>
-            <div className="flex items-center justify-center shrink grow-0 overflow-hidden">
-              <div>
-                <h3>{link.title}</h3>
-                <p className="text-white/50 h-6 overflow-hidden">{link.subtitle}</p>
-              </div>
+            <div>
+              <h3 className="font-semibold">{link.title}</h3>
+              <p className="text-sm text-white/70">{link.subtitle}</p>
             </div>
           </Link>
         ))}
       </div>
+
     </div>
   );
 }
