@@ -105,7 +105,7 @@ export default async function UserPage({ params }) {
       </div>
 
       {/* Nom et localisation */}
-      <h2 className="text-3xl font-semibold text-white px-4 mb-4">{page.displayName}</h2>
+      <h2 className="-mt-6 text-3xl font-semibold text-white px-4 mb-4">{page.displayName}</h2>
       <h3 className="text-lg text-white/70 flex items-center gap-2">
         <FontAwesomeIcon icon={faLocationDot} className="h-5" />
         <span>{page.location}</span>
