@@ -34,7 +34,7 @@ export default function PageSettingsForm({page,user}) {
     });
   }
   return (
-    <div>
+    <div className="font-sans">
       <SectionBox>
         <form action={saveBaseSettings}>
           <div
@@ -130,13 +130,13 @@ export default function PageSettingsForm({page,user}) {
               id="locationIn"
               name="location"
               defaultValue={page.location}
-              placeholder="Somewhere in the world"/>
+              placeholder="Quelque part dans le monde"/>
             <label className="input-label" htmlFor="bioIn">Bio</label>
             <textarea
               name="bio"
               defaultValue={page.bio}
               id="bioIn"
-              placeholder="Your bio goes here..." />
+              placeholder="Votre bio va ici..." />
             <div className="max-w-[200px] mx-auto">
               <SubmitButton>
                 <FontAwesomeIcon icon={faSave} />

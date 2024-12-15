@@ -12,7 +12,8 @@ const nextConfig = {
         hostname: 'eqcard.s3.amazonaws.com',
       },
     ],
-  }
+  },
+  
 }
 
 module.exports = nextConfig

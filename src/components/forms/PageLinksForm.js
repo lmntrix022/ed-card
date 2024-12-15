@@ -58,7 +58,7 @@ export default function PageLinksForm({page,user}) {
   }
   return (
     <SectionBox>
-      <form action={save}>
+      <form action={save} className="font-sans">
         <h2 className="text-2xl font-bold mb-4">Liens</h2>
         <button
           onClick={addNewLink}

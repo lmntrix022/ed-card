@@ -64,7 +64,7 @@ export default function PageButtonsForm({user,page}) {
 
   return (
     <SectionBox>
-      <form action={saveButtons}>
+      <form action={saveButtons} className="font-sans">
         <h2 className="text-2xl font-bold mb-4">Boutons</h2>
         <ReactSortable
           handle=".handle"

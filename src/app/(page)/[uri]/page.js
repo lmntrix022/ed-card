@@ -12,6 +12,7 @@ import {
   faWhatsapp,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
+import { faQrcode } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope, faLink, faLocationDot, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import mongoose from "mongoose";
@@ -82,9 +83,10 @@ export default async function UserPage({ params }) {
   if (page.buttons.twitter) {
     vcardParams.append("twitter", page.buttons.twitter);
   }
+  
 
   return (
-    <div className="min-h-screen flex flex-col items-center" style={{ backgroundColor: page.bgColor }}>
+    <div className="min-h-screen flex flex-col items-center font-sans" style={{ backgroundColor: page.bgColor }} >
       {/* Bannière */}
       <div
         className="h-80 w-full bg-cover bg-center shadow-md rounded-b-[38%]"
@@ -131,12 +133,21 @@ export default async function UserPage({ params }) {
       </div>
 
       {/* Télécharger Contact */}
-      <div className="mt-6">
+      <div className="mt-6 flex gap-4">
         <Link
           href={`/api/vcard?${vcardParams.toString()}`}
           className="px-6 py-3 rounded-full bg-blue-950 text-white shadow-lg hover:bg-[#fff] hover:text-blue-950 transition"
         >
           Sauvegarder contact
+        </Link>
+
+        {/* Bouton QR Code */}
+        <Link
+          href={``} // Exemple de lien pour générer un QR code
+          className="px-6 rounded-full bg-gray-700 text-white shadow-lg hover:bg-[#fff] hover:text-gray-700 transition flex items-center"
+        >
+          <FontAwesomeIcon icon={faQrcode} className="mr-2" />
+          QR Code
         </Link>
       </div>
 

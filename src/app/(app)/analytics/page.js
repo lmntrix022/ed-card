@@ -51,7 +51,7 @@ export default async function AnalyticsPage() {
   });
 
   return (
-    <div>
+    <div className="font-sans">
       <SectionBox>
         <h2 className="text-xl mb-6 text-center">Vues</h2>
         <Chart data={groupedViews.map(o => ({

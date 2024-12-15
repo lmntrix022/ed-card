@@ -1,7 +1,7 @@
 'use client';
 import LogoutButton from "@/components/buttons/LogoutButton";
 import {faFileLines} from "@fortawesome/free-regular-svg-icons";
-import {faArrowLeft, faChartLine} from "@fortawesome/free-solid-svg-icons";
+import {faArrowLeft, faChartLine, faContactBook} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
@@ -9,12 +9,12 @@ import {usePathname} from "next/navigation";
 export default function AppSidebar() {
   const path = usePathname();
   return (
-    <nav className="inline-flex mx-auto flex-col text-center mt-8 gap-2 text-gray-500">
+    <nav className="inline-flex mx-auto flex-col text-center mt-8 gap-2 text-gray-500 font-sans">
       <Link
         href={'/account'}
         className={
           "flex gap-4 p-2 "
-          + (path === '/account' ? 'text-blue-500' : '')
+          + (path === '/account' ? 'text-pink-600' : '')
         }>
         <FontAwesomeIcon
           fixedWidth={true}
@@ -27,7 +27,7 @@ export default function AppSidebar() {
         href={'/analytics'}
         className={
           "flex gap-4 p-2 "
-          + (path === '/analytics' ? 'text-blue-500' : '')
+          + (path === '/analytics' ? 'text-pink-600' : '')
         }>
         <FontAwesomeIcon
           fixedWidth={true}
@@ -36,6 +36,21 @@ export default function AppSidebar() {
         />
         <span className="">Analyse</span>
       </Link>
+
+      <Link
+        href={'/contact'}
+        className={
+          "flex gap-4 p-2 "
+          + (path === '/contact' ? 'text-pink-600' : '')
+        }>
+        <FontAwesomeIcon
+          fixedWidth={true}
+          icon={faContactBook}
+          className={'w-6 h-6'}
+        />
+        <span className="">Contact</span>
+      </Link>
+
       <LogoutButton
         iconLeft={true}
         className={'flex gap-4 items-center text-gray-500 p-2'}
