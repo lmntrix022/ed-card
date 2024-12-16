@@ -24,8 +24,6 @@ import {
   FormControl,
   TablePagination,
   Menu,
-  Snackbar,
-  Alert,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import MoreVertIcon from "@mui/icons-material/MoreHoriz";
@@ -446,13 +444,12 @@ export default function ContactPage() {
       {showForm && (
         <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-xl shadow-xl md:w-[45%]">
-            <div className="flex justify-between items-center">
-              <h2 className="text-xl font-semibold">Nouveau Contact</h2>
-              <button onClick={handleToggleForm} className="text-xl font-bold text-black">
+            <div className="flex justify-between items-center mt-8">
+              <button onClick={handleToggleForm} className="text-xl font-bold text-black ">
                 <CloseIcon className="text-gray-500" />
               </button>
             </div>
-            <div className="mt-4">
+            <div className="">
               <AddContact />
             </div>
           </div>
