@@ -444,12 +444,13 @@ export default function ContactPage() {
       {showForm && (
         <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-xl shadow-xl md:w-[45%]">
-            <div className="flex justify-between items-center mt-8">
-              <button onClick={handleToggleForm} className="text-xl font-bold text-black ">
-                <CloseIcon className="text-gray-500" />
-              </button>
+            <div className="flex justify-between items-center ">
+            
             </div>
             <div className="">
+              <button onClick={handleToggleForm} className="text-xl font-bold text-black -pb-16">
+                <CloseIcon className="text-gray-500 " />
+              </button>
               <AddContact />
             </div>
           </div>
