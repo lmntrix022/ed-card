@@ -12,12 +12,10 @@ import {
   Paper,
   IconButton,
   Tooltip,
-  InputAdornment,
   CircularProgress,
   Box,
   Checkbox,
   Chip,
-  TextField,
   MenuItem,
   Select,
   InputLabel,
@@ -27,10 +25,11 @@ import {
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import MoreVertIcon from "@mui/icons-material/MoreHoriz";
-import SearchIcon from "@mui/icons-material/Search";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { Close as CloseIcon, ArrowUpward, ArrowDownward } from "@mui/icons-material";
 import * as XLSX from "xlsx";
+import SearchBar from "@/components/SearchBar";
+import ContactsTable from "@/components/ContactsTable";
 
 export default function ContactPage() {
   const [showForm, setShowForm] = useState(false);
@@ -191,32 +190,8 @@ export default function ContactPage() {
 
         <Box display="grid" gridTemplateColumns="repeat(auto-fill, minmax(250px, 1fr))" gap={3} mb={6}>
           {/* Zone de recherche */}
-          <TextField
-            label="Rechercher"
-            variant="outlined"
-            fullWidth
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon />
-                </InputAdornment>
-              ),
-            }}
-            sx={{
-              "& .MuiOutlinedInput-root": {
-                height: "56px", // Hauteur standard
-                backgroundColor: "transparent",
-                "& fieldset": {
-                  borderColor: "rgba(255, 255, 255, 0.4)",
-                },
-                "&:hover fieldset": {
-                  borderColor: "rgb(219, 39, 119)",
-                },
-              },
-            }}
-          />
+          <SearchBar value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+
 
           {/* Zone de filtre avec icône et bouton à 3 points alignés horizontalement */}
           <div className="flex items-center space-x-2"> {/* Ajout de flex pour aligner horizontalement */}

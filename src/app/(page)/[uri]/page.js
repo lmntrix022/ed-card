@@ -1,6 +1,8 @@
 import { Page } from "@/models/Page";
 import { User } from "@/models/User";
 import { Event } from "@/models/Event";
+import QRCode from "qrcode"; // Import de la bibliothèque QRCode
+
 import {
   faDiscord,
   faFacebook,
@@ -34,7 +36,6 @@ export const buttonsIcons = {
   linkedin: faLinkedin,
 };
 
-
 function buttonLink(key, value) {
   if (key === "mobile") {
     return "tel:" + value;
@@ -47,6 +48,7 @@ function buttonLink(key, value) {
 
 export default async function UserPage({ params }) {
   const uri = params.uri;
+  const pageUrl = `${process.env.BASE_URL}/${uri}`; // URL complète
 
   // Connecter à la base de données
   await mongoose.connect(process.env.MONGO_URI);
@@ -58,35 +60,11 @@ export default async function UserPage({ params }) {
   // Enregistrer l'événement de vue
   await Event.create({ uri: uri, page: uri, type: "view" });
 
-  // Préparer les paramètres pour l'API vCard
-  const vcardParams = new URLSearchParams({
-    displayName: page.displayName,
-    email: page.buttons.email || "",
-    phone: page.buttons.mobile || "",
-    address: page.location || "",
-    photo: user.image, // Ajouter la photo de profil
-  });
-
-  // Ajouter les liens et les réseaux sociaux (s'ils existent)
-  if (page.links) {
-    page.links.forEach((link) => vcardParams.append("website", link.url));
-  }
-  if (page.buttons.instagram) {
-    vcardParams.append("instagram", page.buttons.instagram);
-  }
-  if (page.buttons.facebook) {
-    vcardParams.append("facebook", page.buttons.facebook);
-  }
-  if (page.buttons.linkedin) {
-    vcardParams.append("linkedin", page.buttons.linkedin);
-  }
-  if (page.buttons.twitter) {
-    vcardParams.append("twitter", page.buttons.twitter);
-  }
-  
+  // Générer le QR Code en base64 avec l'URL complète
+  const qrCodeBase64 = await QRCode.toDataURL(pageUrl);
 
   return (
-    <div className="min-h-screen flex flex-col items-center font-sans" style={{ backgroundColor: page.bgColor }} >
+    <div className="min-h-screen flex flex-col items-center font-sans" style={{ backgroundColor: page.bgColor }}>
       {/* Bannière */}
       <div
         className="h-80 w-full bg-cover bg-center shadow-md rounded-b-[38%]"
@@ -94,9 +72,8 @@ export default async function UserPage({ params }) {
           page.bgType === "color"
             ? { backgroundColor: page.bgColor }
             : { backgroundImage: `url(${page.bgImage})` }
-  }
+        }
       ></div>
-
 
       {/* Avatar */}
       <div className="relative -top-20 w-36 h-36 rounded-full shadow-lg overflow-hidden border-4 border-white ">
@@ -135,20 +112,25 @@ export default async function UserPage({ params }) {
       {/* Télécharger Contact */}
       <div className="mt-6 flex gap-4">
         <Link
-          href={`/api/vcard?${vcardParams.toString()}`}
+          href={`/api/vcard?${new URLSearchParams({
+            displayName: page.displayName,
+            email: page.buttons.email || "",
+            phone: page.buttons.mobile || "",
+            address: page.location || "",
+            photo: user.image,
+          }).toString()}`}
           className="px-6 py-3 rounded-full bg-blue-950 text-white shadow-lg hover:bg-[#fff] hover:text-blue-950 transition"
         >
           Sauvegarder contact
         </Link>
 
-        {/* Bouton QR Code */}
-        <Link
-          href={``} // Exemple de lien pour générer un QR code
-          className="px-6 rounded-full bg-gray-700 text-white shadow-lg hover:bg-[#fff] hover:text-gray-700 transition flex items-center"
-        >
-          <FontAwesomeIcon icon={faQrcode} className="mr-2" />
-          QR Code
-        </Link>
+        
+      </div>
+
+      {/* QR Code */}
+      <div className="mt-6 ">
+        <img src={qrCodeBase64} alt="QR Code" className="rounded-lg mx-auto shadow-lg border border-gray-200 " />
+        <p className="text-gray-500 mt-6">Scannez ce QR Code pour visiter la page.</p>
       </div>
 
       {/* Liens */}
@@ -182,8 +164,8 @@ export default async function UserPage({ params }) {
 
         
       </div>
+
       <Footer />
     </div>
-    
   );
 }
